@@ -9,28 +9,28 @@ module.exports = {
             .setDescription('Create a channel!')
             .addStringOption(option => option.setName('channel')
                 .setDescription('What do you want the channel to be named as?')
-                .setRequired(true)),
+                .setRequired(true))
         )
         .addSubcommand(subcommand => subcommand.setName('delete')
             .setDescription('Delete a channel!')
             .addChannelOption(option => option.setName('channel')
                 .setDescription('Which channel do you want to delete?')
                 .addChannelTypes(ChannelType.GuildText)
-                .setRequired(true)),
+                .setRequired(true))
         )
         .addSubcommand(subcommand => subcommand.setName('lock')
             .setDescription('Lock a channel!')
             .addChannelOption(option => option.setName('channel')
                 .setDescription('Which channel do you want to lock?')
                 .addChannelTypes(ChannelType.GuildText)
-                .setRequired(true)),
+                .setRequired(true))
         )
         .addSubcommand(subcommand => subcommand.setName('unlock')
             .setDescription('Unlock a channel!')
             .addChannelOption(option => option.setName('channel')
                 .setDescription('Which channel do you want to unlock?')
                 .addChannelTypes(ChannelType.GuildText)
-                .setRequired(true)),
+                .setRequired(true))
         )
         .addSubcommand(subcommand => subcommand.setName('slowmode')
             .setDescription('Set a slowmode for a channel!')
@@ -56,7 +56,7 @@ module.exports = {
                     { name: '2 hours', value: '2h' },
                     { name: '6 hours', value: '6h' }
                 )
-                .setRequired(true)),
+                .setRequired(true))
         ),
     async execute(interaction, client) {
         await interaction.deferReply();
@@ -110,7 +110,7 @@ module.exports = {
 
             case 'delete': {
                 interaction.guild.channels.delete(channel2.id).catch((error) => {
-                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n${error}` });
+                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                 });
 
                 const channelEmbed = new EmbedBuilder()
@@ -131,7 +131,7 @@ module.exports = {
                 channel3.permissionOverwrites.create(interaction.guild.id, {
                     SendMessages: false
                 }).catch((error) => {
-                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n${error}` });
+                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                 });
 
                 const channelEmbed = new EmbedBuilder()
@@ -152,7 +152,7 @@ module.exports = {
                 channel4.permissionOverwrites.create(interaction.guild.id, {
                     SendMessages: false
                 }).catch(error => {
-                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n${error}` });
+                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                 });
 
                 const channelEmbed = new EmbedBuilder()
@@ -172,85 +172,85 @@ module.exports = {
                 switch (slowmode) {
                     case 'off': {
                         channel5.setRateLimitPerUser(0).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '5s': {
                         channel5.setRateLimitPerUser(5).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '10s': {
                         channel5.setRateLimitPerUser(10).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '15s': {
                         channel5.setRateLimitPerUser(15).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '30s': {
                         channel5.setRateLimitPerUser(30).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '1m': {
                         channel5.setRateLimitPerUser(60).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '2m': {
                         channel5.setRateLimitPerUser(120).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '5m': {
                         channel5.setRateLimitPerUser(300).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '10m': {
                         channel5.setRateLimitPerUser(600).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '15m': {
                         channel5.setRateLimitPerUser(900).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '30m': {
                         channel5.setRateLimitPerUser(1800).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '1h': {
                         channel5.setRateLimitPerUser(3600).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '2h': {
                         channel5.setRateLimitPerUser(7200).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;
                     case '6h': {
                         channel5.setRateLimitPerUser(21600).catch((error) => {
-                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}` });
+                            return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                         });
                     }
                         break;

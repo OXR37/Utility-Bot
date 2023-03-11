@@ -12,13 +12,13 @@ module.exports = {
                 .setRequired(true))
             .addStringOption(option => option.setName('nickname')
                 .setDescription('What do you want the users nickname to be?')
-                .setRequired(true)),
+                .setRequired(true))
         )
         .addSubcommand(subcommand => subcommand.setName('reset')
             .setDescription('Reset an users nickname!')
             .addUserOption(option => option.setName('user')
                 .setDescription('Which users nickname do you want to reset?')
-                .setRequired(true)),
+                .setRequired(true))
         ),
     async execute(interaction, client) {
         await interaction.deferReply();
@@ -37,7 +37,7 @@ module.exports = {
                 const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch((error) => { });
 
                 member.setNickname(nickname).catch(error => {
-                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n${error}` });
+                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                 });
 
                 const nicknameEmbed = new EmbedBuilder()
@@ -59,7 +59,7 @@ module.exports = {
                 const member = interaction.guild.members.cache.get(user2.id) || await interaction.guild.members.fetch(user2.id).catch((error) => { });
 
                 member.setNickname(member.user.username).catch((error) => {
-                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n${error}` });
+                    return interaction.editReply({ content: `${client.config.errorMessage} ${client.config.errorEmoji}\n\`\`\`${error}\`\`\`` });
                 });
 
                 const nicknameEmbed = new EmbedBuilder()

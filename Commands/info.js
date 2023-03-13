@@ -1,4 +1,4 @@
-const { AttachmentBuilder, EmbedBuilder, SlashCommandBuilder, time, userMention } = require('discord.js');
+const { EmbedBuilder, hyperlink, SlashCommandBuilder, time, userMention } = require('discord.js');
 const Discord = require('discord.js');
 const ms = require('ms');
 
@@ -43,11 +43,11 @@ function getUserBadges(user) {
                     break;
 
                 case 'Staff':
-                    badges.push('<:DiscordStaff:1081656918151536660>')
+                    badges.push('<:DiscordStaff:1081656918151536660>');
                     break;
 
                 case 'CertifiedModerator':
-                    badges.push('<:CertifiedModerator:1081653575798755410>')
+                    badges.push('<:CertifiedModerator:1081653575798755410>');
                     break;
 
                 case 'Partner':
@@ -136,8 +136,8 @@ module.exports = {
                         { name: 'Rules Channel', value: `${interaction.guild.rulesChannel || 'None'}`, inline: true },
                         { name: 'Updates Channel', value: `${interaction.guild.publicUpdatesChannel || 'None'}`, inline: true },
                         { name: 'Verification Level', value: `${verificationLevel[guild.verificationLevel]}`, inline: true },
-                        { name: 'Icon URL', value: `${interaction.guild.iconURL({ dynamic: true }) || 'None'}`, inline: true },
-                        { name: 'Banner URL', value: `${interaction.guild.bannerURL({ dynamic: true }) || 'None'}`, inline: true }
+                        { name: 'Icon URL', value: `${hyperlink('Link', interaction.guild.iconURL({ dynamic: true })) || 'None'}`, inline: true },
+                        { name: 'Banner URL', value: `${hyperlink('Link', interaction.guild.bannerURL({ dynamic: true })) || 'None'}`, inline: true }
                     )
                     .setTimestamp();
 
@@ -147,7 +147,7 @@ module.exports = {
                 }
 
                 if (interaction.guild.bannerURL()) {
-                    infoEmbed.setImage(interaction.guild.bannerURL({ dynamic: true }));
+                    infoEmbed.setImage(interaction.guild.bannerURL({ dynamic: true, size: 2048 }));
                 }
 
                 interaction.editReply({ embeds: [infoEmbed] });

@@ -155,12 +155,14 @@ module.exports = {
                 break;
             case 'user': {
                 const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch((error) => { });
-                let status;
+                let status = 'Offline 💤';
 
-                if (member.presence) {
-                    status = member.presence.status === 'online' ? 'Online 🟢' : member.presence.status === 'idle' ? 'Idle 🌙' : 'Do Not Disturb ⛔';
-                } else {
-                    status = 'Offline 💤';
+                if (member.presence.status === 'online') {
+                    status = 'Online 🟢';
+                } else if (member.presence.status === 'idle') {
+                    status = 'Idle 🌙';
+                } else if (member.presence.status === 'dnd') {
+                    status = 'Do Not Disturb ⛔';
                 }
 
                 const infoEmbed = new EmbedBuilder()
